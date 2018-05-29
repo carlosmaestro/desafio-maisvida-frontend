@@ -1,0 +1,9 @@
+<div ></div>
+<div (click)="toggleList()">
+  <img [src]="getSrcImg(selected_lang)">
+  <ion-list class="language-list" *ngIf="show_list" >
+    <div *ngFor="let item of listLanguages">
+      <img *ngIf="selected_lang != item" (click)="selectLang(item)" [src]="getSrcImg(item)">
+    </div>
+  </ion-list>
+</div>

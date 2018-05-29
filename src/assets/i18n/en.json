@@ -1,0 +1,7 @@
+{
+  "USER": "User",
+  "PASSWORD": "Password",
+  "REMEMBER_PASSWORD": "Remember Password",
+  "VERSION": "Version",
+  "CONNECTION_ERROR": "Error connecting to server, check your connection or contact administrator!"
+}
