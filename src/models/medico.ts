@@ -1,13 +1,14 @@
+import { Especialidade } from './especialidade';
 import { Cidade } from './cidade';
 import { Status } from './status';
 import { Estado } from './estado';
 export interface Medico {
     id?: string;
-    primeiro_nome?: string;
-    ultimo_nome?: string;
-    especialidade?: string;
+    first_name?: string;
+    last_name?: string;
+    email?: string;
     ativo?: boolean;
+    especialidade?: string | Especialidade;
     status?: string | Status;
-    estado?: string | Estado;
-    cidade?: string | Cidade;
+    cidade?: Cidade | string ;
 }

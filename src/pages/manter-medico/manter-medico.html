@@ -1,18 +1,113 @@
-<!--
-  Generated template for the ManterMedicoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>manter-medico</ion-title>
+  <ion-navbar color="stf-super-light-blue">
+    <ion-title>{{page_title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content>
+  <div *ngIf="ready">
+    <ion-list>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label stacked>Primeiro Nome*</ion-label>
+          <ion-icon class="input-icon" name="" item-start>
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </ion-icon>
+          <ion-input type="text" [(ngModel)]="medico.first_name" formControlName="first_name"></ion-input>
+        </ion-item>
+        <app-campo-control-erro justify-content-center [mostrarErro]="verificaValidTouched('first_name')" msgErro="O Primeiro Nome é obrigatório.">
+        </app-campo-control-erro>
 
-<ion-content padding>
+        <ion-item>
+          <ion-label stacked>Último Nome*</ion-label>
+          <ion-icon class="input-icon" name="" item-start>
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </ion-icon>
+          <ion-input type="text" formControlName="last_name" [(ngModel)]="medico.last_name"></ion-input>
+        </ion-item>
+        <app-campo-control-erro justify-content-center [mostrarErro]="verificaValidTouched('last_name')" msgErro="O último Nome é obrigatório.">
+        </app-campo-control-erro>
 
+
+        <ion-item>
+          <ion-label stacked>E-mail*</ion-label>
+          <ion-icon item-start>
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+          </ion-icon>
+          <ion-input type="email" formControlName="email" [(ngModel)]="medico.email"></ion-input>
+        </ion-item>
+        <app-campo-control-erro justify-content-center [mostrarErro]="verificaValidTouched('email')" msgErro="O email é obrigatório.">
+        </app-campo-control-erro>
+
+        <ion-item>
+          <ion-label>Especialidade*</ion-label>
+          <ion-icon item-start>
+            <i class="fa fa-user-md" aria-hidden="true"></i>
+          </ion-icon>
+          <ion-select formControlName="especialidade" [(ngModel)]="medico.especialidade">
+            <ion-option *ngFor="let item of especialidades" value="{{item.id}}">{{item.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <app-campo-control-erro justify-content-center [mostrarErro]="verificaValidTouched('especialidade')" msgErro="A especialidade é obrigatória.">
+        </app-campo-control-erro>
+
+
+        <ion-item>
+          <ion-label>Estado*</ion-label>
+          <ion-icon item-start>
+            <i class="fa fa-map" aria-hidden="true"></i>
+          </ion-icon>
+          <ion-select formControlName="estado" [(ngModel)]="medico.estado" (ngModelChange)="onSelectEstado($event)">
+            <ion-option *ngFor="let item of estados" value="{{item.id}}">{{item.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <app-campo-control-erro justify-content-center [mostrarErro]="verificaValidTouched('estado')" msgErro="O estado é obrigatória.">
+        </app-campo-control-erro>
+
+        <ion-item *ngIf="cidades">
+          <ion-label>Cidade*</ion-label>
+          <ion-icon item-start>
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+          </ion-icon>
+          <ion-select [(ngModel)]="medico.cidade" formControlName="cidade">
+            <ion-option *ngFor="let item of cidades" value="{{item.id}}">{{item.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <app-campo-control-erro *ngIf="showCidadeError && cidades" justify-content-center [mostrarErro]="verificaValidTouched('cidade')"
+          msgErro="A cidade é obrigatória.">
+        </app-campo-control-erro>
+
+        <ion-item>
+          <ion-label>Status*</ion-label>
+          <ion-icon item-start>
+            <i class="fa fa-exchange" aria-hidden="true"></i>
+          </ion-icon>
+          <ion-select formControlName="status" [(ngModel)]="medico.status">
+            <ion-option *ngFor="let item of status" value="{{item.id}}">{{item.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <app-campo-control-erro justify-content-center [mostrarErro]="verificaValidTouched('status')" msgErro="O status é obrigatório.">
+        </app-campo-control-erro>
+
+        <ion-item>
+          <ion-label>Ativo*</ion-label>
+          <ion-icon item-start>
+            <i class="fa fa-check-square-o" aria-hidden="true"></i>
+          </ion-icon>
+          <ion-checkbox item-end formControlName="ativo" [(ngModel)]="medico.ativo"></ion-checkbox>
+        </ion-item>
+
+
+
+
+        <ion-item text-center class="save-button-item">
+
+          <button type="submit" color="secondary" ion-button large round>Salvar</button>
+        </ion-item>
+      </form>
+    </ion-list>
+
+  </div>
 </ion-content>

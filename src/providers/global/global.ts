@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import { ActionSheetController } from 'ionic-angular'
@@ -8,7 +7,8 @@ import * as ENV from '../../config/enviroment';
 import { ToastProvider } from '../toast/toast';
 import { LoadingProvider } from '../loading/loading';
 
-import { SessionData } from '../../models/session';
+import { Session } from '../../models/session';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class GlobalProvider {
@@ -22,7 +22,7 @@ export class GlobalProvider {
       logged: false
     };
 
-  session_data: SessionData
+  session_data: Session
 
   data: {
     translate: any;
@@ -33,7 +33,7 @@ export class GlobalProvider {
   selected_client: string = "cliente";
 
   constructor(
-    public http: HttpClient,
+    public storage: Storage,
     public loadingCtrl: LoadingProvider,
     public alertCtrl: AlertController,
     public toastCtrl: ToastProvider,

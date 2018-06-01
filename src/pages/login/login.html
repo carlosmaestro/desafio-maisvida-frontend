@@ -1,12 +1,76 @@
-<ion-header>
+<ion-content>
 
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
+  <div ion-fixed class="content-login">
 
-</ion-header>
+    <ion-row text-center>
+      <ion-col col-10 offset-1>
+        <object class="" data="./assets/main/write.svg" type="image/svg+xml"></object>
+      </ion-col>
+    </ion-row>
 
+    <div class="app-name">
+      Desafio Mais Vida
+    </div>
 
-<ion-content padding>
-<div class="fa fa-free-code-camp"></div>
+    <ion-row text-left class="form-login">
+      <ion-col col-10 offset-1>
+        <form [formGroup]="form">
+          <ion-list>
+
+            <ion-item class="input-cont" no-lines>
+              <ion-icon class="fa fa-user" item-start></ion-icon>
+              <ion-input type="text" formControlName="email" [(ngModel)]="userCredentials.email" placeholder="Email"></ion-input>
+            </ion-item>
+
+            <app-campo-control-erro justify-content-center [mostrarErro]="verificaValidTouched('email')" msgErro="O usuário é obrigatório"></app-campo-control-erro>
+
+            <ion-item class="input-cont" no-lines>
+              <ion-icon class="fa fa-lock" item-start></ion-icon>
+              <ion-input type="password" formControlName="senha" [(ngModel)]="userCredentials.senha" placeholder="Senha"></ion-input>
+            </ion-item>
+
+            <app-campo-control-erro justify-content-center [mostrarErro]="verificaValidTouched('senha')" msgErro="A senha é obrigatória"></app-campo-control-erro>
+
+           
+            <ion-grid>
+              <ion-row>
+                <ion-col col-4 class="flex-center">
+                  <ion-toggle [(ngModel)]="save_credentials" [ngModelOptions]="{standalone: true}" (ionChange)="toggleRemember($event)" checked="false"></ion-toggle>
+                </ion-col>
+                <ion-col col-5 class="flex-center">
+                  <label class="remember-write">Remember-me</label>
+                </ion-col>
+                <ion-col col-3 text-center>
+                  <select-lang></select-lang>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+            <ion-grid>
+              <ion-row text-center>
+                <ion-col col-10 offset-1>
+                  <button class="button-login" ion-button full round (tap)="login()">Log In</button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+          </ion-list>
+        </form>
+      </ion-col>
+    </ion-row>
+
+    <ion-row text-center>
+      <ion-col col-4 offset-4>
+        <object class="smart" data="./assets/main/smart.svg" type="image/svg+xml"></object>
+      </ion-col>
+    </ion-row>
+
+    <ion-row text-center>
+      <ion-col col-4 offset-4>
+        <b class="version">{{global.ENV.APP_VERSION}}</b>
+      </ion-col>
+    </ion-row>
+
+  </div>
+
 </ion-content>

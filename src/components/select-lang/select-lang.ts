@@ -22,7 +22,7 @@ export class SelectLangComponent {
     public global: GlobalProvider,
     private storage: Storage,
   ) {
-    this.storage.get(this.global.ENV.SAVE_DEFAULT_LANG_PATH).then(
+    this.storage.get(this.global.ENV.LANG_STORAGE_PATH).then(
       data => {
         if (data) {
           this.selectLang(data, false);
@@ -49,7 +49,7 @@ export class SelectLangComponent {
     }
     this.selected_lang = lang;
     this.translate.setDefaultLang(lang);
-    this.storage.set(this.global.ENV.SAVE_DEFAULT_LANG_PATH, lang).then(data => {
+    this.storage.set(this.global.ENV.LANG_STORAGE_PATH, lang).then(data => {
 
       this.translate.getTranslation(lang).subscribe(value => {
         this.global.data.translate = value;

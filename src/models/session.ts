@@ -1,3 +1,4 @@
-export interface SessionData{
-    
+export interface Session {
+    user: string;
+    token: string;
 }

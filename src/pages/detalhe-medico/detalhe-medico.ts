@@ -1,12 +1,8 @@
+import { ManterMedicoPageMode } from './../manter-medico/manter-medico';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the DetalheMedicoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ManterMedicoPage } from '../manter-medico/manter-medico';
+import { Medico } from '../../models/medico';
 
 @IonicPage()
 @Component({
@@ -14,12 +10,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'detalhe-medico.html',
 })
 export class DetalheMedicoPage {
-
+  medico: Medico;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.medico = navParams.get("medico");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetalheMedicoPage');
   }
 
+  editMedico(){
+    //copia se referencia
+    let _medico = Object.assign({}, this.medico);
+    this.navCtrl.push(ManterMedicoPage, { page_mode: ManterMedicoPageMode.Edit, medico: _medico});
+  }
 }

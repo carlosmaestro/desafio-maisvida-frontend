@@ -15,11 +15,12 @@ export class LoadingProvider {
   
   show() {
     if (!this.isShowing) {
-      this.loading = this.loadingCtrl.create({
-        content: '<img heigth="50px" width="50px" src="assets/imgs/load.gif" />',
-        spinner: "hide",
-        cssClass: "loadind-default"
-      });
+      this.loading = this.loadingCtrl.create();
+      // {
+      //   content: '<img heigth="50px" width="50px" src="assets/imgs/load.gif" />',
+      //   spinner: "hide",
+      //   cssClass: "loadind-default"
+      // }
       this.isShowing = true;
       this.loading.present();
     }

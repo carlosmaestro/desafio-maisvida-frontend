@@ -1,4 +1,4 @@
-export interface Estado {
+export interface Especialidade {
     id?: string;
     name?: string;
 }
